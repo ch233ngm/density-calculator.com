@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Density Calculator Pro | Quick & Easy Density Calculations</title>
+    <meta name="description" content="Professional density calculator with instant results and unit conversion. Calculate density from mass and volume with our easy-to-use scientific tool.">
+    <meta name="keywords" content="density calculator, mass density calculator, density conversion, density formula, scientific calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md fixed w-full z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">DensityPro</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#calculator" class="hover:text-blue-600 transition">Calculator</a>
+                <a href="#converter" class="hover:text-blue-600 transition">Converter</a>
+                <a href="#features" class="hover:text-blue-600 transition">Features</a>
+                <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                    Scientific Density Calculator
+                </h1>
+                <p class="text-xl text-blue-100 mb-8">
+                    Instant density calculations with precision unit conversion for scientists, engineers, and students
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="py-16 -mt-8">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-center mb-8 text-slate-800">Density Calculator</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Mass</label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                            <input type="number" id="mass" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-slate-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter mass">
+                            <select id="massUnit" class="inline-flex items-center px-3 py-2 rounded-r-md border border-l-0 border-slate-300 bg-slate-50 text-slate-700">
+                                <option value="mg">mg</option>
+                                <option value="g" selected>g</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Volume</label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                            <input type="number" id="volume" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-slate-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter volume">
+                            <select id="volumeUnit" class="inline-flex items-center px-3 py-2 rounded-r-md border border-l-0 border-slate-300 bg-slate-50 text-slate-700">
+                                <option value="ml">mL</option>
+                                <option value="cm3" selected>cm³</option>
+                                <option value="m3">m³</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="calculateDensity()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 px-4 rounded-md hover:from-blue-700 hover:to-cyan-600 transition shadow-md">
+                        Calculate Density
+                    </button>
+                    <div id="result" class="mt-4 p-6 bg-slate-50 rounded-md hidden">
+                        <p class="text-lg font-semibold text-center text-slate-800">Density: <span id="densityResult"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unit Converter Section -->
+    <section id="converter" class="py-16 bg-slate-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">Density Unit Converter</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Enter Value</label>
+                        <input type="number" id="convertValue" class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Enter value to convert">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700">From</label>
+                            <select id="fromUnit" class="mt-1 block w-full py-2 px-3 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="mg/ml">mg/mL</option>
+                                <option value="g/ml">g/mL</option>
+                                <option value="g/cm3">g/cm³</option>
+                                <option value="kg/m3">kg/m³</option>
+                                <option value="kg/l">kg/L</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700">To</label>
+                            <select id="toUnit" class="mt-1 block w-full py-2 px-3 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="mg/ml">mg/mL</option>
+                                <option value="g/ml">g/mL</option>
+                                <option value="g/cm3">g/cm³</option>
+                                <option value="kg/m3">kg/m³</option>
+                                <option value="kg/l">kg/L</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="convertDensity()" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-3 px-4 rounded-md hover:from-blue-700 hover:to-cyan-600 transition shadow-md">
+                        Convert
+                    </button>
+                    <div id="conversionResult" class="mt-4 p-6 bg-slate-50 rounded-md hidden">
+                        <p class="text-lg font-semibold text-center text-slate-800">
+                            <span id="inputValue"></span> <span id="fromUnitText"></span> = 
+                            <span id="outputValue"></span> <span id="toUnitText"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">Why Choose Our Calculator?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition">
+                    <i class="fas fa-bolt text-blue-500 text-2xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">Real-time Calculations</h3>
+                    <p class="text-slate-600">Get instant density results with our advanced calculator</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition">
+                    <i class="fas fa-exchange-alt text-blue-500 text-2xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">Smart Unit Conversion</h3>
+                    <p class="text-slate-600">Convert between multiple density units effortlessly</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition">
+                    <i class="fas fa-check-circle text-blue-500 text-2xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">Scientific Precision</h3>
+                    <p class="text-slate-600">Accurate calculations for professional use</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-slate-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">How is density calculated?</h3>
+                    <p class="text-slate-600">Density (ρ) is calculated using the formula: ρ = mass/volume. For example, if an object has a mass of 10g and a volume of 5cm³, its density would be 2 g/cm³.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">Common Density Unit Conversions</h3>
+                    <p class="text-slate-600">1 g/mL = 1000 mg/mL = 1 g/cm³ = 1000 kg/m³. Our converter handles these conversions automatically!</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-slate-800">Why is density important?</h3>
+                    <p class="text-slate-600">Density is crucial in materials science, engineering, and chemistry. It helps determine material properties and is essential for quality control and material selection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">DensityPro</h3>
+                    <p class="text-slate-400">Professional density calculations made simple</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#calculator" class="text-slate-400 hover:text-white transition">Calculator</a></li>
+                        <li><a href="#converter" class="text-slate-400 hover:text-white transition">Converter</a></li>
+                        <li><a href="#faq" class="text-slate-400 hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-slate-400">Questions? Contact us at</p>
+                    <p class="text-slate-400">support@densitypro.com</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center">
+                <p class="text-slate-400">&copy; 2024 DensityPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateDensity() {
+            const mass = parseFloat(document.getElementById('mass').value);
+            const volume = parseFloat(document.getElementById('volume').value);
+            const massUnit = document.getElementById('massUnit').value;
+            const volumeUnit = document.getElementById('volumeUnit').value;
+
+            if (!mass || !volume) {
+                alert('Please enter both mass and volume values');
+                return;
+            }
+
+            // Convert mass to grams
+            let massInGrams = mass;
+            switch(massUnit) {
+                case 'mg':
+                    massInGrams = mass / 1000;
+                    break;
+                case 'kg':
+                    massInGrams = mass * 1000;
+                    break;
+            }
+
+            // Convert volume to cm³
+            let volumeInCm3 = volume;
+            switch(volumeUnit) {
+                case 'ml':
+                    volumeInCm3 = volume;
+                    break;
+                case 'm3':
+                    volumeInCm3 = volume * 1000000;
+                    break;
+            }
+
+            const density = massInGrams / volumeInCm3;
+            
+            const resultElement = document.getElementById('result');
+            const densityResultElement = document.getElementById('densityResult');
+            resultElement.classList.remove('hidden');
+            densityResultElement.textContent = `${density.toFixed(4)} g/cm³`;
+        }
+
+        function convertDensity() {
+            const value = parseFloat(document.getElementById('convertValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            if (!value) {
+                alert('Please enter a value to convert');
+                return;
+            }
+
+            // Conversion factors to g/cm³ (base unit)
+            const toBase = {
+                'mg/ml': 0.001,
+                'g/ml': 1,
+                'g/cm3': 1,
+                'kg/m3': 0.001,
+                'kg/l': 1
+            };
+
+            // Convert to base unit (g/cm³) first
+            const baseValue = value * toBase[fromUnit];
+            // Then convert to target unit
+            const result = baseValue / toBase[toUnit];
+
+            const resultElement = document.getElementById('conversionResult');
+            const inputValueElement = document.getElementById('inputValue');
+            const outputValueElement = document.getElementById('outputValue');
+            const fromUnitTextElement = document.getElementById('fromUnitText');
+            const toUnitTextElement = document.getElementById('toUnitText');
+
+            resultElement.classList.remove('hidden');
+            inputValueElement.textContent = value.toFixed(4);
+            outputValueElement.textContent = result.toFixed(4);
+            fromUnitTextElement.textContent = fromUnit;
+            toUnitTextElement.textContent = toUnit;
+        }
+    </script>
+</body>
+</html>
